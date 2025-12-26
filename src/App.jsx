@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Zap, MapPin, Lock, Unlock, Music, ChevronDown, Disc, Sparkles, Radio, Activity, X, Volume2, VolumeX, Cpu, ListMusic } from 'lucide-react';
+import { Zap, Activity, X, Volume2, VolumeX } from 'lucide-react';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  // REMOVED: const [showQR, setShowQR] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   
   // Audio State
@@ -22,7 +21,7 @@ const App = () => {
 
   const concertDate = new Date("2026-03-31T20:00:00").getTime();
   
-  const apiKey = ""; 
+  // Removed unused apiKey
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2500);
