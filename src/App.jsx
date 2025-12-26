@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Zap, MapPin, Lock, Unlock, Music, ChevronDown, Disc, Sparkles, Radio, Activity, X, Volume2, VolumeX, Cpu, ListMusic, QrCode } from 'lucide-react';
+import { Zap, MapPin, Lock, Unlock, Music, ChevronDown, Disc, Sparkles, Radio, Activity, X, Volume2, VolumeX, Cpu, ListMusic } from 'lucide-react';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [showQR, setShowQR] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   
   // Audio State
@@ -131,32 +130,6 @@ const App = () => {
               >
                 BACK TO HOMEPAGE
               </button>
-           </div>
-        </div>
-      )}
-
-      {/* QR Code Modal */}
-      {showQR && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-in fade-in duration-200">
-           <div className="bg-white p-4 rounded-xl max-w-sm w-full relative shadow-[0_0_50px_rgba(57,255,20,0.5)] text-center">
-              <button 
-                onClick={() => setShowQR(false)}
-                className="absolute top-2 right-2 text-black hover:text-red-500 transition-colors"
-              >
-                <X size={24} />
-              </button>
-              <h3 className="text-black font-black italic uppercase tracking-tighter mb-4 text-xl">Scan to Access</h3>
-              <div className="flex justify-center mb-4">
-                 {/* Dynamically generates QR for the current page URL */}
-                 <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${window.location.href}`} 
-                    alt="QR Code" 
-                    className="w-48 h-48 mix-blend-multiply" 
-                 />
-              </div>
-              <p className="text-black/50 font-mono text-[10px] uppercase break-all">
-                 {window.location.href}
-              </p>
            </div>
         </div>
       )}
@@ -291,6 +264,10 @@ const App = () => {
                   </div>
                </div>
             </div>
+            
+            <div className="bg-white p-2 flex justify-between items-center">
+               <div className="h-6 w-full bg-[url('https://upload.wikimedia.org/wikipedia/commons/5/5d/UPC-A-036000291452.svg')] bg-repeat-x bg-contain opacity-50 grayscale"></div>
+            </div>
           </div>
 
           {/* Countdown */}
@@ -319,15 +296,8 @@ const App = () => {
 
         </main>
 
-        {/* Footer with QR Feature */}
-        <footer className="p-8 text-center relative z-10 flex flex-col items-center gap-4">
-          <button 
-            onClick={() => setShowQR(true)}
-            className="text-gray-600 hover:text-[#39FF14] transition-colors flex items-center gap-2 text-[10px] uppercase tracking-widest font-mono"
-          >
-            <QrCode size={16} />
-            <span>Get Pass QR</span>
-          </button>
+        {/* Footer */}
+        <footer className="p-8 text-center relative z-10">
           <p className="text-gray-600 text-[9px] font-mono uppercase tracking-[0.3em]">
             © 2026 Cactus Jack
           </p>
