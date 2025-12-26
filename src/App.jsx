@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Zap, Activity, X, Volume2, VolumeX } from 'lucide-react';
+import { Zap, Activity, X } from 'lucide-react';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   
-  // Audio State
-  const [isPlaying, setIsPlaying] = useState(false);
+  // Audio Ref (Logic only, no UI state needed)
   const audioRef = useRef(null);
 
   // --- CONFIGURATION ---
@@ -20,8 +19,6 @@ const App = () => {
   };
 
   const concertDate = new Date("2026-03-31T20:00:00").getTime();
-  
-  // Removed unused apiKey
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2500);
@@ -45,20 +42,8 @@ const App = () => {
     setShowModal(true);
     if (audioRef.current) {
       audioRef.current.volume = 0.4; 
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(err => console.log("Audio play failed:", err));
-    }
-  };
-
-  const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+      // Auto-play music when user interacts
+      audioRef.current.play().catch(err => console.log("Audio play failed:", err));
     }
   };
 
