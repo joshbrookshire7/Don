@@ -4,6 +4,7 @@ import { Zap, MapPin, Lock, Unlock, Music, ChevronDown, Disc, Sparkles, Radio, A
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  // REMOVED: const [showQR, setShowQR] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   
   // Audio State
